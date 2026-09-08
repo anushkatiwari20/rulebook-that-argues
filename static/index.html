@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bannerworth University Rulebook QA</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>The Rulebook That Argues With Itself</h1>
+    <p>Ask a question about Bannerworth University's academic regulations. Every answer shows exactly which sections it came from — and says so plainly when the rulebook is silent, or when it disagrees with itself.</p>
+  </header>
+
+  <div class="ask-box">
+    <input id="question" type="text" placeholder="e.g. What is the minimum attendance to sit for exams?" maxlength="500" />
+    <button id="ask-btn">Ask</button>
+  </div>
+
+  <div class="examples">
+    Try:
+    <span class="chip" data-q="What is the minimum attendance percentage required to sit for my semester exam?">attendance threshold (conflict)</span>
+    <span class="chip" data-q="How much is the late fee if I pay my semester fee ten days after the due date?">late fee (conflict)</span>
+    <span class="chip" data-q="What time does the hostel gate close on weekdays?">hostel curfew (answered)</span>
+    <span class="chip" data-q="What happens if I miss my exam because of a family wedding?">wedding absence (not covered)</span>
+  </div>
+
+  <div id="status"></div>
+  <div id="result">
+    <div class="answer-col">
+      <span id="badge" class="badge"></span>
+      <div id="answer" class="answer-panel"></div>
+      <div id="confidence" class="confidence"></div>
+    </div>
+    <div class="citations">
+      <h2>Passages this answer is based on</h2>
+      <div id="citation-list"></div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+:root {
+  --bg: #f7f6f3;
+  --panel: #ffffff;
+  --border: #e2e0da;
+  --text: #23211d;
+  --muted: #6b6860;
+  --accent: #2b4c3f;
+  --answered: #2e7d4f;
+  --answered-bg: #e8f5ec;
+  --not-covered: #6b6860;
+  --not-covered-bg: #eeece7;
+  --conflict: #b3401f;
+  --conflict-bg: #fbe9e3;
+  --score-bar: #c9c4b7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "Segoe UI", Inter, Arial, sans-serif;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+header {
+  margin-bottom: 28px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  margin: 0 0 6px;
+}
+
+header p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.ask-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+#question {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--panel);
+  color: var(--text);
+}
+
+#question:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+#ask-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#ask-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+#ask-btn:not(:disabled):hover {
+  filter: brightness(1.08);
+}
+
+.examples {
+  margin-bottom: 32px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.examples span.chip {
+  display: inline-block;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 12px;
+  margin: 3px 6px 3px 0;
+  cursor: pointer;
+}
+
+.examples span.chip:hover {
+  border-color: var(--accent);
+}
+
+#result {
+  display: none;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+#result.visible {
+  display: grid;
+}
+
+.answer-col {
+  min-width: 0;
+}
+
+.citations {
+  min-width: 0;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.citations h2 {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  padding-bottom: 6px;
+}
+
+@media (max-width: 760px) {
+  #result.visible {
+    grid-template-columns: 1fr;
+  }
+  .citations {
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.badge.answered {
+  background: var(--answered-bg);
+  color: var(--answered);
+}
+
+.badge.not_covered {
+  background: var(--not-covered-bg);
+  color: var(--not-covered);
+}
+
+.badge.conflict {
+  background: var(--conflict-bg);
+  color: var(--conflict);
+}
+
+.answer-panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.confidence {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.citations h2 {
+  font-size: 0.95rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+.citation {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+.citation.conflict-side {
+  border-left-color: var(--conflict);
+}
+
+.citation-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+  gap: 10px;
+}
+
+.citation-head .ref {
+  font-weight: 600;
+}
+
+.citation-head .source {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.score-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.score-bar-track {
+  flex: 1;
+  height: 5px;
+  background: var(--score-bar);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  background: var(--accent);
+}
+
+.score-value {
+  font-size: 0.75rem;
+  color: var(--muted);
+  min-width: 60px;
+  text-align: right;
+}
+
+.citation-text {
+  font-size: 0.9rem;
+  color: var(--text);
+  white-space: pre-wrap;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.error {
+  color: var(--conflict);
+  margin-bottom: 16px;
+}
+
+.loading {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
